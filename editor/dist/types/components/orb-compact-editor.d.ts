@@ -17,11 +17,12 @@ interface OrbCompactEditorProps {
  *
  * Designed to live in a narrow side panel. Renders only the controls a
  * casual user needs to dial in a gradient: preset row, draggable color
- * points, per-point color/radius, and global vibrancy/grain.
+ * points (with optional symmetry lock), per-point color/radius, and global
+ * vibrancy/grain.
  *
  * Trade-offs vs. {@link OrbEditor}:
  *   - no renderer picker (always uses scene default)
- *   - no breathing/symmetric-lock/export controls
+ *   - no breathing/export controls
  *   - no add-orb button (clicking the canvas adds an orb, like OrbEditor)
  *
  * For the kitchen-sink editor with all controls, use {@link OrbEditor}.

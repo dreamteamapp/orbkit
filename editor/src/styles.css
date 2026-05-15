@@ -676,3 +676,25 @@
 .orbkit-compact-editor-remove:hover {
   color: #fca5a5;
 }
+
+.orbkit-compact-editor-color-points-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.orbkit-compact-editor-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  user-select: none;
+}
+
+.orbkit-compact-editor-toggle input[type="checkbox"] {
+  accent-color: #fff;
+  cursor: pointer;
+}

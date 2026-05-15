@@ -47,11 +47,12 @@ const presetToConfig = (preset: Preset) => ({
  *
  * Designed to live in a narrow side panel. Renders only the controls a
  * casual user needs to dial in a gradient: preset row, draggable color
- * points, per-point color/radius, and global vibrancy/grain.
+ * points (with optional symmetry lock), per-point color/radius, and global
+ * vibrancy/grain.
  *
  * Trade-offs vs. {@link OrbEditor}:
  *   - no renderer picker (always uses scene default)
- *   - no breathing/symmetric-lock/export controls
+ *   - no breathing/export controls
  *   - no add-orb button (clicking the canvas adds an orb, like OrbEditor)
  *
  * For the kitchen-sink editor with all controls, use {@link OrbEditor}.
@@ -108,7 +109,17 @@ export function OrbCompactEditor({
         <div className="orbkit-compact-editor-canvas-wrap">
           <CanvasPreview state={state} dispatch={dispatch} />
         </div>
-        <p className="orbkit-compact-editor-caption">Drag points to reposition</p>
+        <div className="orbkit-compact-editor-color-points-footer">
+          <p className="orbkit-compact-editor-caption">Drag points to reposition</p>
+          <label className="orbkit-compact-editor-toggle">
+            <input
+              type="checkbox"
+              checked={state.locked}
+              onChange={(e) => dispatch({ type: 'SET_LOCKED', locked: e.target.checked })}
+            />
+            <span>Symmetry lock</span>
+          </label>
+        </div>
       </section>
 
       {selectedOrb ? (
