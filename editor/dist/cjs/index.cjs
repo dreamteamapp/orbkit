@@ -21,9 +21,11 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var index_exports = {};
 __export(index_exports, {
   CanvasPreview: () => CanvasPreview,
+  ColorPalette: () => ColorPalette,
   ColorPicker: () => ColorPicker,
   DEFAULT_STATE: () => DEFAULT_STATE,
   ExportPanel: () => ExportPanel,
+  OrbCompactEditor: () => OrbCompactEditor,
   OrbControls: () => OrbControls,
   OrbEditor: () => OrbEditor,
   OrbList: () => OrbList,
@@ -40,7 +42,7 @@ __export(index_exports, {
 module.exports = __toCommonJS(index_exports);
 
 // editor/src/styles.css
-var styles_default = '/* @orbkit/editor \u2014 default styles */\n\n/* \u2500\u2500\u2500 Layout \u2500\u2500\u2500 */\n.orbkit-editor {\n  display: flex;\n  gap: 16px;\n  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;\n  font-size: 13px;\n  color: #e0e0e0;\n  background: #141414;\n  border-radius: 12px;\n  padding: 16px;\n  box-sizing: border-box;\n}\n\n.orbkit-editor *,\n.orbkit-editor *::before,\n.orbkit-editor *::after {\n  box-sizing: border-box;\n}\n\n.orbkit-editor-main {\n  flex: 1;\n  min-width: 0;\n}\n\n.orbkit-editor-sidebar {\n  width: 280px;\n  flex-shrink: 0;\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n  overflow-y: auto;\n  max-height: 100%;\n}\n\n/* \u2500\u2500\u2500 Section titles \u2500\u2500\u2500 */\n.orbkit-editor-section-title {\n  font-size: 11px;\n  font-weight: 600;\n  text-transform: uppercase;\n  letter-spacing: 0.05em;\n  color: #666;\n  margin: 0 0 8px;\n}\n\n/* \u2500\u2500\u2500 Canvas preview \u2500\u2500\u2500 */\n.orbkit-editor-canvas {\n  position: relative;\n  width: 100%;\n  aspect-ratio: 16 / 10;\n  border-radius: 10px;\n  overflow: hidden;\n  cursor: crosshair;\n}\n\n.orbkit-editor-canvas .orbkit-scene {\n  width: 100%;\n  height: 100%;\n}\n\n/* \u2500\u2500\u2500 Drag handles \u2500\u2500\u2500 */\n.orbkit-editor-drag-handle {\n  position: absolute;\n  width: 20px;\n  height: 20px;\n  border-radius: 50%;\n  border: 2px solid;\n  background: rgba(255, 255, 255, 0.15);\n  transform: translate(-50%, -50%);\n  cursor: grab;\n  transition: box-shadow 0.15s ease, transform 0.1s ease;\n  padding: 0;\n  outline: none;\n}\n\n.orbkit-editor-drag-handle:hover {\n  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);\n  transform: translate(-50%, -50%) scale(1.15);\n}\n\n.orbkit-editor-drag-handle--selected {\n  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.35);\n  background: rgba(255, 255, 255, 0.3);\n}\n\n.orbkit-editor-drag-handle:active {\n  cursor: grabbing;\n  transform: translate(-50%, -50%) scale(0.95);\n}\n\n/* \u2500\u2500\u2500 Presets \u2500\u2500\u2500 */\n.orbkit-editor-presets-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 8px;\n}\n\n.orbkit-editor-presets-header .orbkit-editor-section-title {\n  margin: 0;\n}\n\n.orbkit-editor-preset-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));\n  gap: 6px;\n}\n\n.orbkit-editor-preset-thumb {\n  position: relative;\n  aspect-ratio: 1;\n  border-radius: 8px;\n  border: 2px solid transparent;\n  cursor: pointer;\n  overflow: hidden;\n  padding: 0;\n  transition: border-color 0.15s ease, transform 0.12s ease;\n}\n\n.orbkit-editor-preset-thumb:hover {\n  border-color: rgba(255, 255, 255, 0.3);\n  transform: scale(1.05);\n}\n\n.orbkit-editor-preset-dot {\n  position: absolute;\n  border-radius: 50%;\n  filter: blur(6px);\n  opacity: 0.8;\n  transform: translate(-50%, -50%);\n}\n\n.orbkit-editor-preset-name {\n  position: absolute;\n  bottom: 2px;\n  left: 0;\n  right: 0;\n  text-align: center;\n  font-size: 8px;\n  color: rgba(255, 255, 255, 0.6);\n  text-overflow: ellipsis;\n  overflow: hidden;\n  white-space: nowrap;\n  padding: 0 2px;\n}\n\n/* \u2500\u2500\u2500 Orb list \u2500\u2500\u2500 */\n.orbkit-editor-orb-list-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 8px;\n}\n\n.orbkit-editor-orb-list-header .orbkit-editor-section-title {\n  margin: 0;\n}\n\n.orbkit-editor-orb-item {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  padding: 6px 8px;\n  border-radius: 6px;\n  border: none;\n  background: transparent;\n  color: #e0e0e0;\n  cursor: pointer;\n  width: 100%;\n  text-align: left;\n  font-size: 13px;\n  transition: background 0.12s ease;\n}\n\n.orbkit-editor-orb-item:hover {\n  background: rgba(255, 255, 255, 0.06);\n}\n\n.orbkit-editor-orb-item--selected {\n  background: rgba(255, 255, 255, 0.1);\n}\n\n.orbkit-editor-orb-swatch {\n  width: 16px;\n  height: 16px;\n  border-radius: 50%;\n  flex-shrink: 0;\n  border: 1px solid rgba(255, 255, 255, 0.15);\n}\n\n.orbkit-editor-orb-delete {\n  margin-left: auto;\n  padding: 2px 6px;\n  background: transparent;\n  border: none;\n  color: #666;\n  cursor: pointer;\n  border-radius: 4px;\n  font-size: 14px;\n  line-height: 1;\n}\n\n.orbkit-editor-orb-delete:hover {\n  color: #f44;\n  background: rgba(255, 68, 68, 0.1);\n}\n\n/* \u2500\u2500\u2500 Controls (orb + scene) \u2500\u2500\u2500 */\n.orbkit-editor-controls {\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n}\n\n.orbkit-editor-control-group {\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n}\n\n.orbkit-editor-label {\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n  font-size: 12px;\n  color: #999;\n}\n\n.orbkit-editor-label span {\n  display: flex;\n  justify-content: space-between;\n}\n\n/* \u2500\u2500\u2500 Slider \u2500\u2500\u2500 */\n.orbkit-editor-slider {\n  display: flex;\n  flex-direction: column;\n  gap: 6px;\n}\n\n.orbkit-editor-slider-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  font-size: 12px;\n  color: #888;\n}\n\n.orbkit-editor-slider-value {\n  font-variant-numeric: tabular-nums;\n  color: #bbb;\n  font-size: 11px;\n  min-width: 24px;\n  text-align: right;\n}\n\n.orbkit-editor-slider input[type="range"] {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 100%;\n  height: 6px;\n  border-radius: 3px;\n  background: linear-gradient(\n    to right,\n    rgba(255, 255, 255, 0.35) 0%,\n    rgba(255, 255, 255, 0.35) var(--slider-percent, 0%),\n    #2a2a2a var(--slider-percent, 0%),\n    #2a2a2a 100%\n  );\n  outline: none;\n  cursor: pointer;\n  transition: background 0.1s ease;\n}\n\n.orbkit-editor-slider input[type="range"]:hover {\n  background: linear-gradient(\n    to right,\n    rgba(255, 255, 255, 0.45) 0%,\n    rgba(255, 255, 255, 0.45) var(--slider-percent, 0%),\n    #333 var(--slider-percent, 0%),\n    #333 100%\n  );\n}\n\n.orbkit-editor-slider input[type="range"]::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 16px;\n  height: 16px;\n  border-radius: 50%;\n  background: #fff;\n  cursor: pointer;\n  border: none;\n  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);\n  transition: transform 0.12s ease, box-shadow 0.12s ease;\n}\n\n.orbkit-editor-slider input[type="range"]::-webkit-slider-thumb:hover {\n  transform: scale(1.15);\n  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);\n}\n\n.orbkit-editor-slider input[type="range"]:active::-webkit-slider-thumb {\n  transform: scale(0.95);\n}\n\n.orbkit-editor-slider input[type="range"]::-moz-range-thumb {\n  width: 16px;\n  height: 16px;\n  border-radius: 50%;\n  background: #fff;\n  cursor: pointer;\n  border: none;\n  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);\n}\n\n.orbkit-editor-slider input[type="range"]::-moz-range-progress {\n  background: rgba(255, 255, 255, 0.35);\n  border-radius: 3px;\n  height: 6px;\n}\n\n.orbkit-editor-slider input[type="range"]::-moz-range-track {\n  background: #2a2a2a;\n  border-radius: 3px;\n  height: 6px;\n}\n\n/* \u2500\u2500\u2500 Color picker \u2500\u2500\u2500 */\n.orbkit-editor-color-picker {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.orbkit-editor-color-picker input[type="color"] {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 32px;\n  height: 32px;\n  border: none;\n  border-radius: 8px;\n  padding: 0;\n  cursor: pointer;\n  background: transparent;\n}\n\n.orbkit-editor-color-picker input[type="color"]::-webkit-color-swatch-wrapper {\n  padding: 0;\n}\n\n.orbkit-editor-color-picker input[type="color"]::-webkit-color-swatch {\n  border: 2px solid rgba(255, 255, 255, 0.1);\n  border-radius: 8px;\n}\n\n.orbkit-editor-color-picker input[type="text"] {\n  flex: 1;\n  background: #1e1e1e;\n  border: 1px solid #333;\n  border-radius: 6px;\n  color: #e0e0e0;\n  font-family: monospace;\n  font-size: 12px;\n  padding: 6px 8px;\n  outline: none;\n  transition: border-color 0.15s ease;\n}\n\n.orbkit-editor-color-picker input[type="text"]:focus {\n  border-color: rgba(255, 255, 255, 0.3);\n}\n\n/* \u2500\u2500\u2500 Select (blend mode) \u2500\u2500\u2500 */\n.orbkit-editor-select {\n  background: #1e1e1e;\n  border: 1px solid #333;\n  border-radius: 6px;\n  color: #e0e0e0;\n  font-size: 12px;\n  padding: 6px 8px;\n  outline: none;\n  cursor: pointer;\n  transition: border-color 0.15s ease;\n  width: 100%;\n}\n\n.orbkit-editor-select:focus {\n  border-color: rgba(255, 255, 255, 0.3);\n}\n\n/* \u2500\u2500\u2500 Renderer toggle \u2500\u2500\u2500 */\n.orbkit-editor-renderer-toggle {\n  display: flex;\n  gap: 4px;\n}\n\n.orbkit-editor-renderer-btn {\n  flex: 1;\n  padding: 6px 8px;\n  border: 1px solid #333;\n  border-radius: 6px;\n  background: #1a1a1a;\n  color: #888;\n  font-size: 11px;\n  cursor: pointer;\n  transition: all 0.15s ease;\n}\n\n.orbkit-editor-renderer-btn:hover {\n  border-color: #555;\n  color: #ccc;\n  background: #222;\n}\n\n.orbkit-editor-renderer-btn--active {\n  background: rgba(255, 255, 255, 0.1);\n  color: #fff;\n  border-color: rgba(255, 255, 255, 0.25);\n}\n\n/* \u2500\u2500\u2500 Buttons \u2500\u2500\u2500 */\n.orbkit-editor-btn {\n  padding: 6px 12px;\n  border-radius: 6px;\n  border: 1px solid #333;\n  background: #1a1a1a;\n  color: #e0e0e0;\n  font-size: 12px;\n  cursor: pointer;\n  transition: all 0.15s ease;\n}\n\n.orbkit-editor-btn:hover {\n  border-color: #555;\n  background: #222;\n}\n\n.orbkit-editor-btn:active {\n  transform: scale(0.97);\n}\n\n.orbkit-editor-btn--randomize {\n  font-size: 11px;\n  padding: 4px 10px;\n}\n\n.orbkit-editor-btn--add {\n  font-size: 11px;\n  padding: 4px 10px;\n}\n\n/* \u2500\u2500\u2500 Toggle group (drift/wavy/interactive) \u2500\u2500\u2500 */\n.orbkit-editor-toggle-group {\n  display: flex;\n  gap: 8px;\n  margin-top: 6px;\n  flex-wrap: wrap;\n}\n\n.orbkit-editor-toggle {\n  display: flex;\n  align-items: center;\n  gap: 6px;\n  font-size: 12px;\n  color: #888;\n  cursor: pointer;\n  padding: 4px 8px;\n  border-radius: 6px;\n  border: 1px solid transparent;\n  transition: all 0.15s ease;\n  user-select: none;\n}\n\n.orbkit-editor-toggle:hover {\n  background: rgba(255, 255, 255, 0.04);\n  color: #bbb;\n}\n\n.orbkit-editor-toggle:has(input:checked) {\n  color: #ddd;\n  border-color: rgba(255, 255, 255, 0.12);\n  background: rgba(255, 255, 255, 0.06);\n}\n\n.orbkit-editor-toggle input[type="checkbox"] {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 14px;\n  height: 14px;\n  border-radius: 4px;\n  border: 1.5px solid #555;\n  background: #1e1e1e;\n  cursor: pointer;\n  position: relative;\n  transition: all 0.15s ease;\n  flex-shrink: 0;\n}\n\n.orbkit-editor-toggle input[type="checkbox"]:checked {\n  background: rgba(255, 255, 255, 0.85);\n  border-color: rgba(255, 255, 255, 0.85);\n}\n\n.orbkit-editor-toggle input[type="checkbox"]:checked::after {\n  content: "";\n  position: absolute;\n  left: 3.5px;\n  top: 1px;\n  width: 4px;\n  height: 7px;\n  border: solid #141414;\n  border-width: 0 1.5px 1.5px 0;\n  transform: rotate(45deg);\n}\n\n/* \u2500\u2500\u2500 Field (label + control) \u2500\u2500\u2500 */\n.orbkit-editor-field {\n  display: flex;\n  flex-direction: column;\n  gap: 6px;\n}\n\n/* \u2500\u2500\u2500 Export \u2500\u2500\u2500 */\n.orbkit-editor-export-buttons {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n}\n\n.orbkit-editor-btn--export,\n.orbkit-editor-btn--download {\n  flex: 1;\n  min-width: 80px;\n  text-align: center;\n  font-size: 11px;\n  padding: 5px 8px;\n}\n\n.orbkit-editor-btn--download {\n  flex-basis: 100%;\n}\n';
+var styles_default = '/* @orbkit/editor \u2014 default styles */\n\n/* \u2500\u2500\u2500 Layout \u2500\u2500\u2500 */\n.orbkit-editor {\n  display: flex;\n  gap: 16px;\n  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;\n  font-size: 13px;\n  color: #e0e0e0;\n  background: #141414;\n  border-radius: 12px;\n  padding: 16px;\n  box-sizing: border-box;\n}\n\n.orbkit-editor *,\n.orbkit-editor *::before,\n.orbkit-editor *::after {\n  box-sizing: border-box;\n}\n\n.orbkit-editor-main {\n  flex: 1;\n  min-width: 0;\n}\n\n.orbkit-editor-sidebar {\n  width: 280px;\n  flex-shrink: 0;\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n  overflow-y: auto;\n  max-height: 100%;\n}\n\n/* \u2500\u2500\u2500 Section titles \u2500\u2500\u2500 */\n.orbkit-editor-section-title {\n  font-size: 11px;\n  font-weight: 600;\n  text-transform: uppercase;\n  letter-spacing: 0.05em;\n  color: #666;\n  margin: 0 0 8px;\n}\n\n/* \u2500\u2500\u2500 Canvas preview \u2500\u2500\u2500 */\n.orbkit-editor-canvas {\n  position: relative;\n  width: 100%;\n  aspect-ratio: 16 / 10;\n  border-radius: 10px;\n  overflow: hidden;\n  cursor: crosshair;\n}\n\n.orbkit-editor-canvas .orbkit-scene {\n  width: 100%;\n  height: 100%;\n}\n\n/* \u2500\u2500\u2500 Drag handles \u2500\u2500\u2500 */\n.orbkit-editor-drag-handle {\n  position: absolute;\n  width: 20px;\n  height: 20px;\n  border-radius: 50%;\n  border: 2px solid;\n  background: rgba(255, 255, 255, 0.15);\n  transform: translate(-50%, -50%);\n  cursor: grab;\n  transition: box-shadow 0.15s ease, transform 0.1s ease;\n  padding: 0;\n  outline: none;\n}\n\n.orbkit-editor-drag-handle:hover {\n  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);\n  transform: translate(-50%, -50%) scale(1.15);\n}\n\n.orbkit-editor-drag-handle--selected {\n  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.35);\n  background: rgba(255, 255, 255, 0.3);\n}\n\n.orbkit-editor-drag-handle:active {\n  cursor: grabbing;\n  transform: translate(-50%, -50%) scale(0.95);\n}\n\n/* \u2500\u2500\u2500 Presets \u2500\u2500\u2500 */\n.orbkit-editor-presets-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 8px;\n}\n\n.orbkit-editor-presets-header .orbkit-editor-section-title {\n  margin: 0;\n}\n\n.orbkit-editor-preset-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));\n  gap: 6px;\n}\n\n.orbkit-editor-preset-thumb {\n  position: relative;\n  aspect-ratio: 1;\n  border-radius: 8px;\n  border: 2px solid transparent;\n  cursor: pointer;\n  overflow: hidden;\n  padding: 0;\n  transition: border-color 0.15s ease, transform 0.12s ease;\n}\n\n.orbkit-editor-preset-thumb:hover {\n  border-color: rgba(255, 255, 255, 0.3);\n  transform: scale(1.05);\n}\n\n.orbkit-editor-preset-dot {\n  position: absolute;\n  border-radius: 50%;\n  filter: blur(6px);\n  opacity: 0.8;\n  transform: translate(-50%, -50%);\n}\n\n.orbkit-editor-preset-name {\n  position: absolute;\n  bottom: 2px;\n  left: 0;\n  right: 0;\n  text-align: center;\n  font-size: 8px;\n  color: rgba(255, 255, 255, 0.6);\n  text-overflow: ellipsis;\n  overflow: hidden;\n  white-space: nowrap;\n  padding: 0 2px;\n}\n\n/* \u2500\u2500\u2500 Orb list \u2500\u2500\u2500 */\n.orbkit-editor-orb-list-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 8px;\n}\n\n.orbkit-editor-orb-list-header .orbkit-editor-section-title {\n  margin: 0;\n}\n\n.orbkit-editor-orb-item {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  padding: 6px 8px;\n  border-radius: 6px;\n  border: none;\n  background: transparent;\n  color: #e0e0e0;\n  cursor: pointer;\n  width: 100%;\n  text-align: left;\n  font-size: 13px;\n  transition: background 0.12s ease;\n}\n\n.orbkit-editor-orb-item:hover {\n  background: rgba(255, 255, 255, 0.06);\n}\n\n.orbkit-editor-orb-item--selected {\n  background: rgba(255, 255, 255, 0.1);\n}\n\n.orbkit-editor-orb-swatch {\n  width: 16px;\n  height: 16px;\n  border-radius: 50%;\n  flex-shrink: 0;\n  border: 1px solid rgba(255, 255, 255, 0.15);\n}\n\n.orbkit-editor-orb-delete {\n  margin-left: auto;\n  padding: 2px 6px;\n  background: transparent;\n  border: none;\n  color: #666;\n  cursor: pointer;\n  border-radius: 4px;\n  font-size: 14px;\n  line-height: 1;\n}\n\n.orbkit-editor-orb-delete:hover {\n  color: #f44;\n  background: rgba(255, 68, 68, 0.1);\n}\n\n/* \u2500\u2500\u2500 Controls (orb + scene) \u2500\u2500\u2500 */\n.orbkit-editor-controls {\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n}\n\n.orbkit-editor-control-group {\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n}\n\n.orbkit-editor-label {\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n  font-size: 12px;\n  color: #999;\n}\n\n.orbkit-editor-label span {\n  display: flex;\n  justify-content: space-between;\n}\n\n/* \u2500\u2500\u2500 Slider \u2500\u2500\u2500 */\n.orbkit-editor-slider {\n  display: flex;\n  flex-direction: column;\n  gap: 6px;\n}\n\n.orbkit-editor-slider-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  font-size: 12px;\n  color: #888;\n}\n\n.orbkit-editor-slider-value {\n  font-variant-numeric: tabular-nums;\n  color: #bbb;\n  font-size: 11px;\n  min-width: 24px;\n  text-align: right;\n}\n\n.orbkit-editor-slider input[type="range"] {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 100%;\n  height: 6px;\n  border-radius: 3px;\n  background: linear-gradient(\n    to right,\n    rgba(255, 255, 255, 0.35) 0%,\n    rgba(255, 255, 255, 0.35) var(--slider-percent, 0%),\n    #2a2a2a var(--slider-percent, 0%),\n    #2a2a2a 100%\n  );\n  outline: none;\n  cursor: pointer;\n  transition: background 0.1s ease;\n}\n\n.orbkit-editor-slider input[type="range"]:hover {\n  background: linear-gradient(\n    to right,\n    rgba(255, 255, 255, 0.45) 0%,\n    rgba(255, 255, 255, 0.45) var(--slider-percent, 0%),\n    #333 var(--slider-percent, 0%),\n    #333 100%\n  );\n}\n\n.orbkit-editor-slider input[type="range"]::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 16px;\n  height: 16px;\n  border-radius: 50%;\n  background: #fff;\n  cursor: pointer;\n  border: none;\n  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);\n  transition: transform 0.12s ease, box-shadow 0.12s ease;\n}\n\n.orbkit-editor-slider input[type="range"]::-webkit-slider-thumb:hover {\n  transform: scale(1.15);\n  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);\n}\n\n.orbkit-editor-slider input[type="range"]:active::-webkit-slider-thumb {\n  transform: scale(0.95);\n}\n\n.orbkit-editor-slider input[type="range"]::-moz-range-thumb {\n  width: 16px;\n  height: 16px;\n  border-radius: 50%;\n  background: #fff;\n  cursor: pointer;\n  border: none;\n  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);\n}\n\n.orbkit-editor-slider input[type="range"]::-moz-range-progress {\n  background: rgba(255, 255, 255, 0.35);\n  border-radius: 3px;\n  height: 6px;\n}\n\n.orbkit-editor-slider input[type="range"]::-moz-range-track {\n  background: #2a2a2a;\n  border-radius: 3px;\n  height: 6px;\n}\n\n/* \u2500\u2500\u2500 Color picker \u2500\u2500\u2500 */\n.orbkit-editor-color-picker {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.orbkit-editor-color-picker input[type="color"] {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 32px;\n  height: 32px;\n  border: none;\n  border-radius: 8px;\n  padding: 0;\n  cursor: pointer;\n  background: transparent;\n}\n\n.orbkit-editor-color-picker input[type="color"]::-webkit-color-swatch-wrapper {\n  padding: 0;\n}\n\n.orbkit-editor-color-picker input[type="color"]::-webkit-color-swatch {\n  border: 2px solid rgba(255, 255, 255, 0.1);\n  border-radius: 8px;\n}\n\n.orbkit-editor-color-picker input[type="text"] {\n  flex: 1;\n  background: #1e1e1e;\n  border: 1px solid #333;\n  border-radius: 6px;\n  color: #e0e0e0;\n  font-family: monospace;\n  font-size: 12px;\n  padding: 6px 8px;\n  outline: none;\n  transition: border-color 0.15s ease;\n}\n\n.orbkit-editor-color-picker input[type="text"]:focus {\n  border-color: rgba(255, 255, 255, 0.3);\n}\n\n/* \u2500\u2500\u2500 Select (blend mode) \u2500\u2500\u2500 */\n.orbkit-editor-select {\n  background: #1e1e1e;\n  border: 1px solid #333;\n  border-radius: 6px;\n  color: #e0e0e0;\n  font-size: 12px;\n  padding: 6px 8px;\n  outline: none;\n  cursor: pointer;\n  transition: border-color 0.15s ease;\n  width: 100%;\n}\n\n.orbkit-editor-select:focus {\n  border-color: rgba(255, 255, 255, 0.3);\n}\n\n/* \u2500\u2500\u2500 Renderer toggle \u2500\u2500\u2500 */\n.orbkit-editor-renderer-toggle {\n  display: flex;\n  gap: 4px;\n}\n\n.orbkit-editor-renderer-btn {\n  flex: 1;\n  padding: 6px 8px;\n  border: 1px solid #333;\n  border-radius: 6px;\n  background: #1a1a1a;\n  color: #888;\n  font-size: 11px;\n  cursor: pointer;\n  transition: all 0.15s ease;\n}\n\n.orbkit-editor-renderer-btn:hover {\n  border-color: #555;\n  color: #ccc;\n  background: #222;\n}\n\n.orbkit-editor-renderer-btn--active {\n  background: rgba(255, 255, 255, 0.1);\n  color: #fff;\n  border-color: rgba(255, 255, 255, 0.25);\n}\n\n/* \u2500\u2500\u2500 Buttons \u2500\u2500\u2500 */\n.orbkit-editor-btn {\n  padding: 6px 12px;\n  border-radius: 6px;\n  border: 1px solid #333;\n  background: #1a1a1a;\n  color: #e0e0e0;\n  font-size: 12px;\n  cursor: pointer;\n  transition: all 0.15s ease;\n}\n\n.orbkit-editor-btn:hover {\n  border-color: #555;\n  background: #222;\n}\n\n.orbkit-editor-btn:active {\n  transform: scale(0.97);\n}\n\n.orbkit-editor-btn--randomize {\n  font-size: 11px;\n  padding: 4px 10px;\n}\n\n.orbkit-editor-btn--add {\n  font-size: 11px;\n  padding: 4px 10px;\n}\n\n/* \u2500\u2500\u2500 Toggle group (drift/wavy/interactive) \u2500\u2500\u2500 */\n.orbkit-editor-toggle-group {\n  display: flex;\n  gap: 8px;\n  margin-top: 6px;\n  flex-wrap: wrap;\n}\n\n.orbkit-editor-toggle {\n  display: flex;\n  align-items: center;\n  gap: 6px;\n  font-size: 12px;\n  color: #888;\n  cursor: pointer;\n  padding: 4px 8px;\n  border-radius: 6px;\n  border: 1px solid transparent;\n  transition: all 0.15s ease;\n  user-select: none;\n}\n\n.orbkit-editor-toggle:hover {\n  background: rgba(255, 255, 255, 0.04);\n  color: #bbb;\n}\n\n.orbkit-editor-toggle:has(input:checked) {\n  color: #ddd;\n  border-color: rgba(255, 255, 255, 0.12);\n  background: rgba(255, 255, 255, 0.06);\n}\n\n.orbkit-editor-toggle input[type="checkbox"] {\n  -webkit-appearance: none;\n  appearance: none;\n  width: 14px;\n  height: 14px;\n  border-radius: 4px;\n  border: 1.5px solid #555;\n  background: #1e1e1e;\n  cursor: pointer;\n  position: relative;\n  transition: all 0.15s ease;\n  flex-shrink: 0;\n}\n\n.orbkit-editor-toggle input[type="checkbox"]:checked {\n  background: rgba(255, 255, 255, 0.85);\n  border-color: rgba(255, 255, 255, 0.85);\n}\n\n.orbkit-editor-toggle input[type="checkbox"]:checked::after {\n  content: "";\n  position: absolute;\n  left: 3.5px;\n  top: 1px;\n  width: 4px;\n  height: 7px;\n  border: solid #141414;\n  border-width: 0 1.5px 1.5px 0;\n  transform: rotate(45deg);\n}\n\n/* \u2500\u2500\u2500 Field (label + control) \u2500\u2500\u2500 */\n.orbkit-editor-field {\n  display: flex;\n  flex-direction: column;\n  gap: 6px;\n}\n\n/* \u2500\u2500\u2500 Export \u2500\u2500\u2500 */\n.orbkit-editor-export-buttons {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n}\n\n.orbkit-editor-btn--export,\n.orbkit-editor-btn--download {\n  flex: 1;\n  min-width: 80px;\n  text-align: center;\n  font-size: 11px;\n  padding: 5px 8px;\n}\n\n.orbkit-editor-btn--download {\n  flex-basis: 100%;\n}\n\n/* \u2500\u2500\u2500 Compact editor \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */\n\n.orbkit-compact-editor {\n  display: flex;\n  flex-direction: column;\n  gap: 24px;\n  color: inherit;\n  font-family: inherit;\n}\n\n.orbkit-compact-editor-section {\n  display: flex;\n  flex-direction: column;\n  gap: 12px;\n}\n\n.orbkit-compact-editor-preset-row {\n  display: grid;\n  grid-template-columns: repeat(5, minmax(0, 1fr));\n  gap: 8px;\n}\n\n.orbkit-compact-editor-preset-thumb {\n  position: relative;\n  aspect-ratio: 1;\n  border-radius: 10px;\n  border: 1px solid rgba(255, 255, 255, 0.08);\n  overflow: hidden;\n  cursor: pointer;\n  padding: 0;\n  display: flex;\n  align-items: flex-end;\n  justify-content: center;\n  transition: transform 120ms ease, border-color 120ms ease;\n}\n\n.orbkit-compact-editor-preset-thumb:hover {\n  transform: translateY(-1px);\n  border-color: rgba(255, 255, 255, 0.25);\n}\n\n.orbkit-compact-editor-preset-label {\n  position: relative;\n  z-index: 1;\n  font-size: 11px;\n  font-weight: 500;\n  color: #fff;\n  padding: 4px 0;\n  width: 100%;\n  text-align: center;\n  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);\n  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);\n}\n\n.orbkit-compact-editor-canvas-wrap {\n  aspect-ratio: 16 / 9;\n  border-radius: 12px;\n  overflow: hidden;\n  position: relative;\n}\n\n.orbkit-compact-editor-canvas-wrap .orbkit-editor-canvas {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n}\n\n.orbkit-compact-editor-caption {\n  margin: 0;\n  font-size: 12px;\n  color: rgba(255, 255, 255, 0.5);\n}\n\n.orbkit-compact-editor-sublabel {\n  font-size: 13px;\n  font-weight: 500;\n  color: inherit;\n}\n\n.orbkit-editor-palette {\n  display: grid;\n  grid-template-columns: repeat(8, 1fr);\n  gap: 6px;\n}\n\n.orbkit-editor-palette-swatch {\n  aspect-ratio: 1;\n  border-radius: 4px;\n  border: 1px solid rgba(255, 255, 255, 0.08);\n  cursor: pointer;\n  padding: 0;\n  transition: transform 80ms ease, box-shadow 80ms ease;\n}\n\n.orbkit-editor-palette-swatch:hover {\n  transform: scale(1.1);\n}\n\n.orbkit-editor-palette-swatch--selected {\n  box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(0, 0, 0, 0.6);\n}\n\n.orbkit-compact-editor-hex-input {\n  appearance: none;\n  background: rgba(255, 255, 255, 0.06);\n  border: 1px solid rgba(255, 255, 255, 0.12);\n  border-radius: 8px;\n  color: inherit;\n  font-family: ui-monospace, "SF Mono", Menlo, monospace;\n  font-size: 13px;\n  padding: 8px 12px;\n  outline: none;\n  width: 120px;\n}\n\n.orbkit-compact-editor-hex-input:focus {\n  border-color: rgba(255, 255, 255, 0.35);\n}\n\n.orbkit-compact-editor-remove {\n  align-self: flex-start;\n  background: none;\n  border: none;\n  color: #f87171;\n  font-size: 14px;\n  font-weight: 500;\n  padding: 4px 0;\n  cursor: pointer;\n}\n\n.orbkit-compact-editor-remove:hover {\n  color: #fca5a5;\n}\n';
 
 // editor/src/inject-styles.ts
 var STYLE_ID = "orbkit-editor-styles";
@@ -862,7 +864,7 @@ function randomizeTheme(seed) {
 // editor/src/components/preset-gallery.tsx
 var import_jsx_runtime7 = require("react/jsx-runtime");
 function PresetGallery({ dispatch }) {
-  const presetEntries = Object.entries(import_orbkit2.presets);
+  const presetEntries2 = Object.entries(import_orbkit2.presets);
   const applyPreset = (preset) => {
     dispatch({
       type: "APPLY_PRESET",
@@ -904,7 +906,7 @@ function PresetGallery({ dispatch }) {
         }
       )
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "orbkit-editor-preset-grid", children: presetEntries.map(([name, preset]) => /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
+    /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "orbkit-editor-preset-grid", children: presetEntries2.map(([name, preset]) => /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
       "button",
       {
         type: "button",
@@ -1027,6 +1029,204 @@ function OrbEditor({
       selectedOrb && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(OrbControls, { orb: selectedOrb, dispatch }),
       /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(SceneControls, { state, dispatch }),
       /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(ExportPanel, { state })
+    ] })
+  ] });
+}
+
+// editor/src/components/orb-compact-editor.tsx
+var import_react6 = require("react");
+var import_orbkit3 = require("@dreamteamapp/orbkit");
+
+// editor/src/components/color-palette.tsx
+var import_jsx_runtime10 = require("react/jsx-runtime");
+var DEFAULT_PALETTE = [
+  "#4F9CF9",
+  "#1E40AF",
+  "#6D28D9",
+  "#7C3AED",
+  "#A78BFA",
+  "#D8B4FE",
+  "#EC4899",
+  "#F472B6",
+  "#F87171",
+  "#F97316",
+  "#F59E0B",
+  "#FB7185",
+  "#EF4444",
+  "#DC2626",
+  "#22C55E",
+  "#15803D",
+  "#0F766E",
+  "#06B6D4",
+  "#22D3EE",
+  "#60A5FA",
+  "#FAFAFA",
+  "#E5E7EB",
+  "#9CA3AF",
+  "#6B7280",
+  "#4B5563",
+  "#1F2937",
+  "#000000"
+];
+var normalize = (hex) => hex.toLowerCase();
+function ColorPalette({ value, onChange, colors = DEFAULT_PALETTE }) {
+  const normalizedValue = normalize(value);
+  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "orbkit-editor-palette", children: colors.map((c) => {
+    const selected = normalize(c) === normalizedValue;
+    return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+      "button",
+      {
+        type: "button",
+        className: selected ? "orbkit-editor-palette-swatch orbkit-editor-palette-swatch--selected" : "orbkit-editor-palette-swatch",
+        style: { backgroundColor: c },
+        onClick: () => onChange(c),
+        "aria-label": `Choose ${c}`,
+        "aria-pressed": selected
+      },
+      c
+    );
+  }) });
+}
+
+// editor/src/components/orb-compact-editor.tsx
+var import_jsx_runtime11 = require("react/jsx-runtime");
+var presetEntries = Object.entries(import_orbkit3.presets);
+var presetToConfig = (preset) => ({
+  background: preset.backgroundColor,
+  saturation: preset.saturation,
+  grain: preset.grain,
+  breathing: preset.breathing,
+  orbs: preset.points.map(
+    (pt, i) => ({
+      id: `preset-${i}`,
+      color: pt.color,
+      position: pt.position,
+      size: pt.radius,
+      blur: pt.blur ?? 40,
+      opacity: pt.opacity ?? 0.8,
+      blendMode: pt.blendMode ?? "screen",
+      drift: pt.drift ?? true,
+      wavy: pt.wavy ?? false,
+      interactive: pt.interactive ?? false
+    })
+  )
+});
+function OrbCompactEditor({
+  value,
+  onChange,
+  defaultValue,
+  colorPalette,
+  className
+}) {
+  const [state, dispatch] = useEditorState(value, defaultValue, onChange);
+  const selectedOrb = (0, import_react6.useMemo)(
+    () => state.selectedOrbId ? state.orbs.find((o) => o.id === state.selectedOrbId) : void 0,
+    [state.selectedOrbId, state.orbs]
+  );
+  return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: className ? `orbkit-compact-editor ${className}` : "orbkit-compact-editor", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("section", { className: "orbkit-compact-editor-section", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("h3", { className: "orbkit-editor-section-title", children: "Presets" }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "orbkit-compact-editor-preset-row", children: presetEntries.map(([name, preset]) => /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
+        "button",
+        {
+          type: "button",
+          className: "orbkit-compact-editor-preset-thumb",
+          onClick: () => dispatch({ type: "APPLY_PRESET", config: presetToConfig(preset) }),
+          title: preset.label,
+          style: { background: preset.backgroundColor },
+          children: [
+            preset.points.map((pt) => /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+              "span",
+              {
+                className: "orbkit-editor-preset-dot",
+                style: {
+                  backgroundColor: pt.color,
+                  left: `${pt.position[0] * 100}%`,
+                  top: `${pt.position[1] * 100}%`,
+                  width: `${pt.radius * 40}%`,
+                  height: `${pt.radius * 40}%`
+                }
+              },
+              `${name}-${pt.id}`
+            )),
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { className: "orbkit-compact-editor-preset-label", children: preset.label })
+          ]
+        },
+        name
+      )) })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("section", { className: "orbkit-compact-editor-section", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("h3", { className: "orbkit-editor-section-title", children: "Color Points" }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "orbkit-compact-editor-canvas-wrap", children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(CanvasPreview, { state, dispatch }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { className: "orbkit-compact-editor-caption", children: "Drag points to reposition" })
+    ] }),
+    selectedOrb ? /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("section", { className: "orbkit-compact-editor-section", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("h3", { className: "orbkit-editor-section-title", children: "Selected Point" }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("label", { className: "orbkit-compact-editor-sublabel", htmlFor: "orbkit-compact-hex-input", children: "Color" }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+        ColorPalette,
+        {
+          value: selectedOrb.color,
+          onChange: (c) => dispatch({ type: "UPDATE_ORB", id: selectedOrb.id, changes: { color: c } }),
+          colors: colorPalette
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+        "input",
+        {
+          id: "orbkit-compact-hex-input",
+          type: "text",
+          className: "orbkit-compact-editor-hex-input",
+          value: selectedOrb.color,
+          onChange: (e) => dispatch({
+            type: "UPDATE_ORB",
+            id: selectedOrb.id,
+            changes: { color: e.target.value }
+          }),
+          "aria-label": "Color hex"
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+        Slider,
+        {
+          label: "Radius",
+          value: Math.round(selectedOrb.size * 100),
+          min: 10,
+          max: 150,
+          onChange: (v) => dispatch({ type: "UPDATE_ORB", id: selectedOrb.id, changes: { size: v / 100 } })
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+        "button",
+        {
+          type: "button",
+          className: "orbkit-compact-editor-remove",
+          onClick: () => dispatch({ type: "REMOVE_ORB", id: selectedOrb.id }),
+          children: "Remove"
+        }
+      )
+    ] }) : null,
+    /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("section", { className: "orbkit-compact-editor-section", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+        Slider,
+        {
+          label: "Vibrancy",
+          value: state.saturation,
+          min: 0,
+          max: 100,
+          onChange: (v) => dispatch({ type: "SET_SATURATION", value: v })
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+        Slider,
+        {
+          label: "Grain",
+          value: state.grain,
+          min: 0,
+          max: 100,
+          onChange: (v) => dispatch({ type: "SET_GRAIN", value: v })
+        }
+      )
     ] })
   ] });
 }

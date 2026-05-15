@@ -1,6 +1,6 @@
 {
   "name": "@dreamteamapp/orbkit",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "type": "module",
   "description": "Composable, animated orb effects for React (dreamteamapp fork of oryanmoshe/orbkit) \u2014 bundles core + editor",
   "author": "Oryan Moshe",

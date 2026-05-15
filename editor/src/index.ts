@@ -3,12 +3,14 @@ import './inject-styles';
 
 // Components
 export { OrbEditor } from './components/orb-editor';
+export { OrbCompactEditor } from './components/orb-compact-editor';
 export { CanvasPreview } from './components/canvas-preview';
 export { OrbControls } from './components/orb-controls';
 export { OrbList } from './components/orb-list';
 export { PresetGallery } from './components/preset-gallery';
 export { SceneControls } from './components/scene-controls';
 export { ExportPanel } from './components/export-panel';
+export { ColorPalette } from './components/color-palette';
 export { ColorPicker } from './components/color-picker';
 export { Slider } from './components/slider';
 
