@@ -682,19 +682,63 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  flex-wrap: nowrap;
+}
+
+.orbkit-compact-editor-color-points-footer .orbkit-compact-editor-caption {
+  flex: 1;
+  min-width: 0;
 }
 
 .orbkit-compact-editor-toggle {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   font-size: 12px;
   color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
   user-select: none;
+  flex-shrink: 0;
 }
 
 .orbkit-compact-editor-toggle input[type="checkbox"] {
-  accent-color: #fff;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 28px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  position: relative;
   cursor: pointer;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  transition: background-color 150ms ease;
+  flex-shrink: 0;
+}
+
+.orbkit-compact-editor-toggle input[type="checkbox"]::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 150ms ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.orbkit-compact-editor-toggle input[type="checkbox"]:checked {
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.orbkit-compact-editor-toggle input[type="checkbox"]:checked::after {
+  transform: translateX(12px);
+}
+
+.orbkit-compact-editor-toggle input[type="checkbox"]:focus-visible {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.45);
 }
