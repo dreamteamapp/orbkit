@@ -18,6 +18,10 @@ export function Grain({ intensity = 0.35, className, style }: GrainProps): JSX.E
     if (!ctx) return;
 
     const { width, height } = canvas.getBoundingClientRect();
+    // Skip when the canvas hasn't been laid out yet — createImageData throws on 0 dims.
+    // ResizeObserver below re-runs this once the element gets real dimensions.
+    if (width <= 0 || height <= 0) return;
+
     canvas.width = width;
     canvas.height = height;
 
@@ -38,9 +42,16 @@ export function Grain({ intensity = 0.35, className, style }: GrainProps): JSX.E
   useEffect(() => {
     renderNoise();
 
-    const handleResize = () => renderNoise();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const canvas = canvasRef.current;
+    if (!canvas || typeof ResizeObserver === 'undefined') {
+      const handleResize = () => renderNoise();
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
+
+    const observer = new ResizeObserver(() => renderNoise());
+    observer.observe(canvas);
+    return () => observer.disconnect();
   }, [renderNoise]);
 
   // Map intensity 0-1 to opacity 0-0.5

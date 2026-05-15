@@ -221,6 +221,7 @@ function Grain({ intensity = 0.35, className, style }) {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     const { width, height } = canvas.getBoundingClientRect();
+    if (width <= 0 || height <= 0) return;
     canvas.width = width;
     canvas.height = height;
     const imageData = ctx.createImageData(width, height);
@@ -236,9 +237,15 @@ function Grain({ intensity = 0.35, className, style }) {
   }, []);
   (0, import_react2.useEffect)(() => {
     renderNoise();
-    const handleResize = () => renderNoise();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const canvas = canvasRef.current;
+    if (!canvas || typeof ResizeObserver === "undefined") {
+      const handleResize = () => renderNoise();
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
+    const observer = new ResizeObserver(() => renderNoise());
+    observer.observe(canvas);
+    return () => observer.disconnect();
   }, [renderNoise]);
   const opacity = intensity * 0.5;
   return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
