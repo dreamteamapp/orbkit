@@ -1,15 +1,22 @@
 {
   "name": "@dreamteamapp/orbkit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
-  "description": "Composable, animated orb effects for React (dreamteamapp fork of oryanmoshe/orbkit) — bundles core + editor",
+  "description": "Composable, animated orb effects for React (dreamteamapp fork of oryanmoshe/orbkit) \u2014 bundles core + editor",
   "author": "Oryan Moshe",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/dreamteamapp/orbkit.git"
   },
-  "keywords": ["react", "orb", "gradient", "animation", "webgl", "background"],
+  "keywords": [
+    "react",
+    "orb",
+    "gradient",
+    "animation",
+    "webgl",
+    "background"
+  ],
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
@@ -33,11 +40,17 @@
         "types": "./editor/dist/types/index.d.ts",
         "default": "./editor/dist/cjs/index.cjs"
       }
-    },
-    "./editor/styles.css": "./editor/dist/styles.css"
+    }
   },
-  "files": ["dist", "src", "editor/dist", "editor/src"],
-  "sideEffects": ["**/*.css"],
+  "files": [
+    "dist",
+    "src",
+    "editor/dist",
+    "editor/src"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "build": "bun run build:core && bun run build:editor",
     "build:core": "bun run build:core:esm && bun run build:core:cjs && bun run build:core:types",
@@ -45,8 +58,8 @@
     "build:core:cjs": "esbuild src/index.ts --bundle --outdir=dist/cjs --format=cjs --target=es2020 --external:react --external:react-dom --loader:.glsl=text --out-extension:.js=.cjs",
     "build:core:types": "tsc --emitDeclarationOnly --outDir dist/types",
     "build:editor": "bun run build:editor:esm && bun run build:editor:cjs && bun run build:editor:types && bun run build:editor:css",
-    "build:editor:esm": "esbuild editor/src/index.ts --bundle --outdir=editor/dist/esm --format=esm --target=es2020 --external:react --external:react-dom --external:@dreamteamapp/orbkit",
-    "build:editor:cjs": "esbuild editor/src/index.ts --bundle --outdir=editor/dist/cjs --format=cjs --target=es2020 --external:react --external:react-dom --external:@dreamteamapp/orbkit --out-extension:.js=.cjs",
+    "build:editor:esm": "esbuild editor/src/index.ts --bundle --outdir=editor/dist/esm --format=esm --target=es2020 --external:react --external:react-dom --external:@dreamteamapp/orbkit --loader:.css=text",
+    "build:editor:cjs": "esbuild editor/src/index.ts --bundle --outdir=editor/dist/cjs --format=cjs --target=es2020 --external:react --external:react-dom --external:@dreamteamapp/orbkit --loader:.css=text --out-extension:.js=.cjs",
     "build:editor:types": "tsc -p editor/tsconfig.json --emitDeclarationOnly",
     "build:editor:css": "cp editor/src/styles.css editor/dist/styles.css",
     "typecheck": "tsc --noEmit && tsc -p editor/tsconfig.json --noEmit"

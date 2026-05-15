@@ -1,3 +1,6 @@
+// Side-effect: inject editor styles on import.
+import './inject-styles';
+
 // Components
 export { OrbEditor } from './components/orb-editor';
 export { CanvasPreview } from './components/canvas-preview';

@@ -1,3 +1,4 @@
+import './inject-styles';
 export { OrbEditor } from './components/orb-editor';
 export { CanvasPreview } from './components/canvas-preview';
 export { OrbControls } from './components/orb-controls';

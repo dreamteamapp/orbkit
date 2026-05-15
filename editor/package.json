@@ -30,7 +30,10 @@
     "dist",
     "src/styles.css"
   ],
-  "sideEffects": false,
+  "sideEffects": [
+    "**/inject-styles*",
+    "**/*.css"
+  ],
   "scripts": {
     "build": "tsc --emitDeclarationOnly --outDir dist/types",
     "test": "bun test",
