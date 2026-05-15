@@ -1,0 +1,50 @@
+{
+  "name": "@dreamteamapp/orbkit",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Composable, animated orb effects for React (dreamteamapp fork of oryanmoshe/orbkit)",
+  "author": "Oryan Moshe",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dreamteamapp/orbkit.git"
+  },
+  "keywords": ["react", "orb", "gradient", "animation", "webgl", "background"],
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    }
+  },
+  "files": ["dist", "src"],
+  "sideEffects": false,
+  "scripts": {
+    "build": "bun run build:esm && bun run build:cjs && bun run build:types",
+    "build:esm": "esbuild src/index.ts --bundle --outdir=dist/esm --format=esm --target=es2020 --external:react --external:react-dom --loader:.glsl=text",
+    "build:cjs": "esbuild src/index.ts --bundle --outdir=dist/cjs --format=cjs --target=es2020 --external:react --external:react-dom --loader:.glsl=text --out-extension:.js=.cjs",
+    "build:types": "tsc --emitDeclarationOnly --outDir dist/types",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.9",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "esbuild": "^0.28.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "typescript": "^5.6.0"
+  }
+}
