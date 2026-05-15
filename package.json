@@ -1,8 +1,8 @@
 {
   "name": "@dreamteamapp/orbkit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
-  "description": "Composable, animated orb effects for React (dreamteamapp fork of oryanmoshe/orbkit)",
+  "description": "Composable, animated orb effects for React (dreamteamapp fork of oryanmoshe/orbkit) — bundles core + editor",
   "author": "Oryan Moshe",
   "license": "MIT",
   "repository": {
@@ -23,16 +23,33 @@
         "types": "./dist/types/index.d.ts",
         "default": "./dist/cjs/index.cjs"
       }
-    }
+    },
+    "./editor": {
+      "import": {
+        "types": "./editor/dist/types/index.d.ts",
+        "default": "./editor/dist/esm/index.js"
+      },
+      "require": {
+        "types": "./editor/dist/types/index.d.ts",
+        "default": "./editor/dist/cjs/index.cjs"
+      }
+    },
+    "./editor/styles.css": "./editor/dist/styles.css"
   },
-  "files": ["dist", "src"],
-  "sideEffects": false,
+  "files": ["dist", "src", "editor/dist", "editor/src"],
+  "sideEffects": ["**/*.css"],
   "scripts": {
-    "build": "bun run build:esm && bun run build:cjs && bun run build:types",
-    "build:esm": "esbuild src/index.ts --bundle --outdir=dist/esm --format=esm --target=es2020 --external:react --external:react-dom --loader:.glsl=text",
-    "build:cjs": "esbuild src/index.ts --bundle --outdir=dist/cjs --format=cjs --target=es2020 --external:react --external:react-dom --loader:.glsl=text --out-extension:.js=.cjs",
-    "build:types": "tsc --emitDeclarationOnly --outDir dist/types",
-    "typecheck": "tsc --noEmit"
+    "build": "bun run build:core && bun run build:editor",
+    "build:core": "bun run build:core:esm && bun run build:core:cjs && bun run build:core:types",
+    "build:core:esm": "esbuild src/index.ts --bundle --outdir=dist/esm --format=esm --target=es2020 --external:react --external:react-dom --loader:.glsl=text",
+    "build:core:cjs": "esbuild src/index.ts --bundle --outdir=dist/cjs --format=cjs --target=es2020 --external:react --external:react-dom --loader:.glsl=text --out-extension:.js=.cjs",
+    "build:core:types": "tsc --emitDeclarationOnly --outDir dist/types",
+    "build:editor": "bun run build:editor:esm && bun run build:editor:cjs && bun run build:editor:types && bun run build:editor:css",
+    "build:editor:esm": "esbuild editor/src/index.ts --bundle --outdir=editor/dist/esm --format=esm --target=es2020 --external:react --external:react-dom --external:@dreamteamapp/orbkit",
+    "build:editor:cjs": "esbuild editor/src/index.ts --bundle --outdir=editor/dist/cjs --format=cjs --target=es2020 --external:react --external:react-dom --external:@dreamteamapp/orbkit --out-extension:.js=.cjs",
+    "build:editor:types": "tsc -p editor/tsconfig.json --emitDeclarationOnly",
+    "build:editor:css": "cp editor/src/styles.css editor/dist/styles.css",
+    "typecheck": "tsc --noEmit && tsc -p editor/tsconfig.json --noEmit"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",

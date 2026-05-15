@@ -16,5 +16,5 @@ import type { OrbSceneProps } from '../types';
  * - `'webgl'`: all orbs rendered via WebGL fragment shader
  * - `'auto'`: auto-detect best renderer (WebGL > Canvas > CSS)
  */
-export declare function OrbScene({ background, grain, breathing, preset, renderer, className, style, as, children, }: OrbSceneProps): JSX.Element;
+export declare function OrbScene({ background, grain, saturation, breathing, preset, renderer, className, style, as, children, }: OrbSceneProps): JSX.Element;
 //# sourceMappingURL=orb-scene.d.ts.map
